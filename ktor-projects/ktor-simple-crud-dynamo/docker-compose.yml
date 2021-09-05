@@ -3,7 +3,7 @@ services:
   localstack_service:
     image: localstack/localstack:latest
     environment:
-      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-2
       - EDGE_PORT=4566
       - SERVICES=dynamodb
       - DATA_DIR=/tmp/localstack/data
@@ -12,3 +12,12 @@ services:
     volumes:
       - './.localstack:/tmp/localstack'
       - '/var/run/docker.sock:/var/run/docker.sock'
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
