@@ -12,3 +12,7 @@ ktor-projects/gradle/
 ktor-projects/gradlew
 
 ktor-projects/gradlew.bat
+
+ktor-projects/ktor-simple-crud-dynamo/.gradle/
+
+ktor-projects/ktor-simple-crud-dynamo/gradle/
