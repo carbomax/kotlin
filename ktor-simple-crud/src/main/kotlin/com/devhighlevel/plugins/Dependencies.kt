@@ -6,26 +6,29 @@ import com.devhighlevel.service.UserService
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import software.amazon.awssdk.http.nio.netty.NettyNioAsyncHttpClient
+import software.amazon.awssdk.http.nio.netty.NettySdkAsyncHttpService
 
 
 object ModuleLoader {
 
     fun init(){
-      startKoin {
-             modules(
-                 listOf(
-                     clientsModule(),
-                     dataAccessModule(),
-                     serviceModule()
-                 )
-             )
-      }
+        startKoin {
+            modules(
+                listOf(
+                    clientsModule(),
+                    dataAccessModule(),
+                    serviceModule()
+                )
+            )
+        }
     }
 }
 
 fun clientsModule(): Module {
     return module {
-        single { DynamoClient() }
+        single { NettySdkAsyncHttpService() }
+        single { DynamoClient( get()) }
     }
 }
 

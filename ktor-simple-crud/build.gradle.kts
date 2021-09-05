@@ -25,6 +25,8 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("software.amazon.awssdk:dynamodb-enhanced:$dynamodbEnhancedVersion")
+    // https://mvnrepository.com/artifact/software.amazon.awssdk/netty-nio-client
+    implementation("software.amazon.awssdk:netty-nio-client:2.17.27")
 
     // Koin for Ktor
     implementation ("io.insert-koin:koin-ktor:$koin_version")
