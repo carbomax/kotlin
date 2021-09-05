@@ -1,0 +1,14 @@
+
+.idea/
+
+ktor-simple-crud/gradle/wrapper/
+
+ktor-simple-crud/.gradle/
+
+ktor-projects/.gradle/
+
+ktor-projects/gradle/
+
+ktor-projects/gradlew
+
+ktor-projects/gradlew.bat
