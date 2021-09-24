@@ -1,17 +1,18 @@
-package com.example.plugins
+package com.example.web.rest.plugins
 
-import io.ktor.routing.*
-import io.ktor.http.*
+import com.example.web.rest.orders
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
+import io.ktor.routing.*
 
 fun Application.configureRouting() {
-    // Starting point for a Ktor app:
+
     routing {
         get("/") {
             call.respondText("Hello World!")
         }
+
+        orders()
     }
 
 }

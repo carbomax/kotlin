@@ -1,7 +1,7 @@
 package com.example
 
 import io.ktor.application.*
-import com.example.plugins.*
+import com.example.web.rest.plugins.*
 
 fun main(args: Array<String>): Unit =
     io.ktor.server.netty.EngineMain.main(args)
