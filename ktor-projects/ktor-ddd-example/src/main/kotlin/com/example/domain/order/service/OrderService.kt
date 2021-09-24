@@ -8,4 +8,5 @@ import java.util.*
 interface OrderService {
     fun createOrder(client: Client) : Order?
     fun addProduct(uuid: UUID, product: Product, quantity: Int = 1)
+    fun getOrder(orderID: UUID) : Order?
 }
