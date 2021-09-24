@@ -11,12 +11,16 @@ import java.util.*
 class DomainOrderService(private val orderRepository: OrderRepository): OrderService {
 
     override fun createOrder(client: Client): Order? {
-       return orderRepository.save(Order(UUID.randomUUID(), client) )
+       return orderRepository.save(Order(UUID.randomUUID(), client))
     }
 
     override fun addProduct(uuid: UUID, product: Product, quantity: Int) {
-        val orderFounded = orderRepository.findById(uuid) ?: throw BusinessException("Order not founded by id: $uuid")
-        orderFounded.addProduct(product, quantity)
-        orderRepository.save(orderFounded)
+        val orderFound = orderRepository.findById(uuid) ?: throw BusinessException("Order not found by id: $uuid")
+        orderFound.addProduct(product, quantity)
+        orderRepository.save(orderFound)
+    }
+
+    override fun getOrder(orderID: UUID): Order? {
+        return orderRepository.findById(orderID) ?: throw BusinessException("Order not found by id: $orderID")
     }
 }

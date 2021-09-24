@@ -7,7 +7,7 @@ import java.util.*
 
 interface OrderRepository {
     fun findById(id: UUID) : Order?
-    fun findProductById(productId: UUID): Product
-    fun findCustomerById(customerId: UUID): Client
+    fun findProductById(productId: UUID): Product?
+    fun findCustomerById(customerId: UUID): Client?
     fun save(order: Order): Order?
 }

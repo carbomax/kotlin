@@ -4,24 +4,35 @@ import com.example.domain.order.Order
 import com.example.domain.order.Product
 import com.example.domain.order.client.Client
 import com.example.domain.order.repository.OrderRepository
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import java.util.*
 
 class DynamoRepository: OrderRepository {
 
-    override fun findById(id: UUID): Order {
-        TODO("Not yet implemented")
+    private var orders = mutableMapOf<UUID, Order>()
+
+    override fun findById(id: UUID): Order? {
+        return orders[id]
     }
 
-    override fun findProductById(productId: UUID): Product {
-        TODO("Not yet implemented")
+    override fun findProductById(productId: UUID): Product? {
+        for (order in orders) {
+            return order.value.items().find { it.product.id == productId }?.product
+        }
+
+        return null
     }
 
-    override fun findCustomerById(customerId: UUID): Client {
-        TODO("Not yet implemented")
+    override fun findCustomerById(customerId: UUID): Client? {
+        for (order in orders) {
+            if (order.value.client().id == customerId) {
+                return order.value.client()
+            }
+        }
+
+        return null
     }
 
     override fun save(order: Order): Order? {
-        TODO("Not yet implemented")
+        return orders.put(order.id(), order)
     }
 }

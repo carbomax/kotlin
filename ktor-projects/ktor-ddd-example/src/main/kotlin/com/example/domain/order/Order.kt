@@ -7,9 +7,13 @@ import java.util.*
 class Order(id: UUID, client: Client) {
 
     private val items = mutableListOf<Item>()
+    private val id = id
+    private val client = client
 
     val paid: Boolean = false
 
+    fun id() = id
+    fun client() = client
     fun items() = items.toList()
 
     fun addProduct(product: Product, quantity: Int) {
