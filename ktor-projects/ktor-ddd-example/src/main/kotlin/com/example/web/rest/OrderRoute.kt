@@ -15,20 +15,28 @@ fun Route.orders() {
 
             val orderCatalogue: OrderCatalogue by inject()
 
-            get("/{id}") {
+            post {
                 val orderId: String? = call.parameters["id"]
                 if (orderId == null) {
-                    call.respond(HttpStatusCode.BadRequest, "order id is required")
+                    call.respond(HttpStatusCode.BadRequest, "orderId is required")
                 }
                 val client = call.receive<ClientRequest>()
                 call.respond(HttpStatusCode.Created, orderCatalogue.createOrder(client))
 
             }
 
-            put("/{id}/") {
+            get("/{id}") {
+                val orderId: String? = call.parameters["id"]
+                if (orderId == null) {
+                    call.respond(HttpStatusCode.BadRequest, "orderId is required")
+                }
+                call.respond(HttpStatusCode.OK, orderCatalogue.getOrderById(orderId!!))
+            }
+
+            put("/{id}/product") {
                 val orderID: String? = call.parameters["id"]
                 if (orderID == null) {
-                    call.respond(HttpStatusCode.BadRequest, "order id is required")
+                    call.respond(HttpStatusCode.BadRequest, "orderId is required")
                 }
                 val product = call.receive<ProductRequest>()
                 orderCatalogue.addProduct(orderID, product)

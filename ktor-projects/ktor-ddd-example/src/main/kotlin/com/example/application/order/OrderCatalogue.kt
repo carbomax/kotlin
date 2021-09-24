@@ -16,6 +16,11 @@ class OrderCatalogue(private val orderService: OrderService) {
        return OrderResponse(orderCreated)
     }
 
+    fun getOrderById(id: String): OrderResponse {
+        val orderFound = orderService.getOrder(UUID.fromString(id)) ?: throw OrderCatalogueException("Order with id:$id not found")
+        return OrderResponse(orderFound)
+    }
+
     fun addProduct(orderId: String?, productRequest: ProductRequest) {
         try {
             orderService.addProduct(UUID.fromString(orderId), Product(productRequest.id, productRequest.description, productRequest.unitPrice))

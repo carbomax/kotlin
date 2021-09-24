@@ -4,11 +4,9 @@ import com.example.domain.BusinessException
 import com.example.domain.order.client.Client
 import java.util.*
 
-class Order(id: UUID, client: Client) {
+class Order(private val id: UUID, private val client: Client) {
 
     private val items = mutableListOf<Item>()
-    private val id = id
-    private val client = client
 
     val paid: Boolean = false
 
