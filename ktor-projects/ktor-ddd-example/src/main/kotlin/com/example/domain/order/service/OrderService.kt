@@ -2,7 +2,7 @@ package com.example.domain.order.service
 
 import com.example.domain.order.Order
 import com.example.domain.order.Product
-import com.example.domain.order.client.Client
+import com.example.domain.client.Client
 import java.util.*
 
 interface OrderService {

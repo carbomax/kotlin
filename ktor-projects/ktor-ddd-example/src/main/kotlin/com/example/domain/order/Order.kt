@@ -1,17 +1,15 @@
 package com.example.domain.order
 
 import com.example.domain.BusinessException
-import com.example.domain.order.client.Client
+import com.example.domain.client.Client
 import java.util.*
 
-class Order(private val id: UUID, private val client: Client) {
+class Order(val id: UUID, val client: Client) {
 
     private val items = mutableListOf<Item>()
 
     val paid: Boolean = false
 
-    fun id() = id
-    fun client() = client
     fun items() = items.toList()
 
     fun addProduct(product: Product, quantity: Int) {

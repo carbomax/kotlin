@@ -1,4 +1,4 @@
-package com.example.domain.order.client
+package com.example.domain.client
 
 import java.util.*
 

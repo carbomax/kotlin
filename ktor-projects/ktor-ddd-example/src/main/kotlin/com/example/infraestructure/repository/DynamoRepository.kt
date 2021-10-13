@@ -2,7 +2,7 @@ package com.example.infraestructure.repository
 
 import com.example.domain.order.Order
 import com.example.domain.order.Product
-import com.example.domain.order.client.Client
+import com.example.domain.client.Client
 import com.example.domain.order.repository.OrderRepository
 import java.util.*
 
@@ -24,8 +24,8 @@ class DynamoRepository: OrderRepository {
 
     override fun findCustomerById(customerId: UUID): Client? {
         for (order in orders) {
-            if (order.value.client().id == customerId) {
-                return order.value.client()
+            if (order.value.client.id == customerId) {
+                return order.value.client
             }
         }
 
@@ -33,6 +33,6 @@ class DynamoRepository: OrderRepository {
     }
 
     override fun save(order: Order): Order? {
-        return orders.put(order.id(), order)
+        return orders.put(order.id, order)
     }
 }
