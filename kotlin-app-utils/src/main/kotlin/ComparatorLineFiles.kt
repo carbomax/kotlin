@@ -3,8 +3,8 @@ import java.io.File
 
 fun main(args: Array<String>) = runBlocking {
 
-    val file1 = "/home/luis/Escritorio/work/config/business_target_by_day_old"
-    val file2 = "/home/luis/Escritorio/work/config/business_target_by_day"
+    val file1 = "file1"
+    val file2 = "file2"
     val hasSameOrder: Boolean? = null
     val linesRead = readFilesLines(file1, file2)
 
